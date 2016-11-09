@@ -105,5 +105,5 @@ git clone https://github.com/d4n13lbc/testproject.git
 
 Forked from d4n13lbc/testproject
 ```
-
+Las pruebas se realizan exitosamente en pytest, estas son los get, post, put y delete del primer parcial. El código se encuentran en el pdf subido al link del curso.
 
