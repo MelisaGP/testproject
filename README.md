@@ -151,8 +151,6 @@ git clone https://github.com/d4n13lbc/testproject.git
 [1]: images/jenkins_configuration_icesi.png
 [2]: images/jenkins_ok.png
 [3]: images/jenkins_console.png
-[4]: images/jenkins_configuration_coverage_icesi.png
-
 <!---
 #Respuestas
 set -e = termina inmediatamente si algun comando produce un error
