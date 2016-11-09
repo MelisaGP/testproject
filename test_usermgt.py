@@ -1,16 +1,19 @@
 import pytest
-import usermgt
+import files
 
 @pytest.fixture
 def client(request):
-    client = usermgt.app.test_client()
+    client = files.app.test_client()
     return client
 
-def get_users(client):
-	return client.get('/api/v1.0/usermgt/users',follow_redirects=True)
+def test_get_all_files(client):
+	result = client.get('/v1.0/files',follow_redirects=True)
+	assert b'files' in result.data
+	
+def test_post_files(client):
+  parcial_2  = {'file': 'parcial_2', 'content': 'Parcial Melisa'}
+  response = client.post('/v1.0/files',data = parcial_2)
+  assert "HTTP 201 CREATE"
 
-def test_get_users(client):
-	result = get_users(client)
-	assert b'operativos' in result.data
 
 
