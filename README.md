@@ -56,7 +56,7 @@ vi /etc/passwd
 hago el cambio de jenkins a /bin/bash
 ```
 
-Create a virtual environment for the project
+Hice la creación de un ambiente virtual y lo activé
 
 ```sh
 su jenkins
@@ -65,10 +65,9 @@ cd /var/lib/jenkins/.virtualenvs
 virtualenv testproject
 . testproject/bin/activate
 ```
-
-***(Optional)*** You can specify the Python version for using in the environment
+Copio lo realizado en el parcial 1 en un nuevo directorio llamado parcial_2
 ```sh
-virtualenv -p /usr/bin/python3.0 <path/to/new/virtualenv/>
+cp -r /home/filesystem_user parcial_2
 ```
 
 Install requirements for the project in the virtualenv
@@ -87,29 +86,12 @@ Export dependencies for the project. You must have your virtual environment acti
 pip freeze > requirements.txt
 ```
 
-## Configure Jenkins through website
 
-Get the ip address of the server and open it in a browser
+Para la apertura de jenkins de el servidor, lo abro con la dirección ip y el puerto abierto
 
-http://192.168.56.101:8080
+http://127.0.0.1:8080
 
-If jenkins stuck on the loading screen, go into the server console and restart jenkins service. Follow
-the wizard configurations. Select the suggested plugins option, also install github plugin, cobertura plugin, html publisher plugin. You can install more plugins later (manage jenkins -> manage plugins)
-
-Create a free-style project with the name **testproject**. Use the configurations as show in the graphics below
-
-![][1]
-
-If the installation was correct, you can see jenkins reports
-
-![][2]
-
-![][3]
-
-If you also want to show coberture tests use the following configuration
-
-![][4]
-
+Hago las instalaciones 
 Instalo el ambiente
 ```sh
 wget https://bootstrap.pypa.io/get-pip.py
@@ -117,7 +99,7 @@ python get-pip.py
 pip install virtualenv
 ```
 
-Create a user and a folder for your projects
+Creo un usuario y un folder para el proyecto
 
 ```sh
 adduser developer
@@ -125,14 +107,6 @@ passwd developer
 su developer
 mkdir ~/projects
 mkdir ~/virtualenvs
-```
-
-Create the environment for the project, activate it and install requeriments
-
-```sh
-cd ~/virtualenvs
-virtualenv testproject
-. testproject/bin/activate
 ```
 
 Get the requirements file from your devops engineer, and install dependencies on the testproject virtual environment
@@ -145,15 +119,8 @@ Clono el repositorio que voy a utilizar, en este caso es el del profesor del cur
 
 ```sh
 git clone https://github.com/d4n13lbc/testproject.git
+
+Forked from d4n13lbc/testproject
 ```
 
 
-[1]: images/jenkins_configuration_icesi.png
-[2]: images/jenkins_ok.png
-[3]: images/jenkins_console.png
-<!---
-#Respuestas
-set -e = termina inmediatamente si algun comando produce un error
-python -m = permite ejecutar un modulo como script
-instalar violations plugin
--->
