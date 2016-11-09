@@ -6,7 +6,7 @@
 
 Enable network interfaces at boot (nat, bridge)
 
-Update server date 
+Modifico el servidor
 
 ```sh
 yum install ntp ntpdate ntp-doc
@@ -14,13 +14,6 @@ chkconfig ntpd on
 ntpdate pool.ntp.org
 /etc/init.d/ntpd start
 ```
-
-***(Optional)*** You can configure additional parameters for ntd in the configuration file
-
-```sh
-vi /etc/ntp.conf
-```
-
 Instalo las siguientes dependencias
 
 ```sh
@@ -41,15 +34,13 @@ vi /etc/sysconfig/iptables
 service iptables restart
 ```
 
-Install Python package manager and virtualenv package
+Instalo el paquete de Python para el entorno virtual
 
 ```sh
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 pip install virtualenv
 ```
-
-Give user jenkins temporary permissions to use a console while preparing the virtualenvironment for the project. Save file changes with **esc, :x**
 
 ```sh
 vi /etc/passwd
@@ -78,12 +69,6 @@ pip install unittest2
 pip install pytest
 pip install pytest-cov
 pip install flask
-```
-
-Export dependencies for the project. You must have your virtual environment activated. In a project, you must provide the requeriments file to your developing team
-
-```sh
-pip freeze > requirements.txt
 ```
 
 
