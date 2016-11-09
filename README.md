@@ -4,8 +4,6 @@
 #Parcial de sistemas operativos 2
 #Tema: Integración continua, Pruebas unitarias a servicios web
 
-Enable network interfaces at boot (nat, bridge)
-
 Modifico el servidor
 
 ```sh
