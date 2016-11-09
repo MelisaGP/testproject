@@ -1,8 +1,8 @@
-#Install Jenkins
-
-## On the CI server machine
-
-Install a virtualbox machine with CentOS 6.7
+#Universidad Icesi 
+#Curso: Sistemas Operativos 
+#Estudiante: Melisa 
+#Parcial de sistemas operativos 2
+#Tema: Integración continua, Pruebas unitarias a servicios web
 
 Enable network interfaces at boot (nat, bridge)
 
@@ -21,7 +21,7 @@ ntpdate pool.ntp.org
 vi /etc/ntp.conf
 ```
 
-Install the needed dependencies
+Instalo las siguientes dependencias
 
 ```sh
 yum install java-1.7.0-openjdk
@@ -32,18 +32,10 @@ sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
 sudo yum install jenkins
 ```
 
-Enable jenkins at boot, start service, and open 8080 port
-
+Inicio el servidor de Jnekins,  abro el puerto 8080 para probar y reinicio el iptables
 ```sh
 chkconfig jenkins on
 service jenkins start
-iptables -I INPUT 5 -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT
-service iptables save
-```
-
-***(Optional)*** You can open a port editting the iptables configuration file. Save file changes with **esc, :x**
-
-```sh
 vi /etc/sysconfig/iptables
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
 service iptables restart
@@ -61,7 +53,7 @@ Give user jenkins temporary permissions to use a console while preparing the vir
 
 ```sh
 vi /etc/passwd
-change for user jenkins /bin/false with /bin/bash
+hago el cambio de jenkins a /bin/bash
 ```
 
 Create a virtual environment for the project
@@ -118,19 +110,7 @@ If you also want to show coberture tests use the following configuration
 
 ![][4]
 
-## On the Developer machine
-
-If you wish to make changes to the project, you have to fork the repository and configure the jenkins project according to
-your specifications. Also if you want to configure a developer environment follow the intructions above.
-
-Install the needed dependencies
-
-```sh
-yum install git -y
-```
-
-Install Python package manager and virtualenv package
-
+Instalo el ambiente
 ```sh
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
@@ -161,44 +141,12 @@ Get the requirements file from your devops engineer, and install dependencies on
 pip install -r requirements
 ```
 
-Clone files from the test repository (In this case I am using my own repository)
+Clono el repositorio que voy a utilizar, en este caso es el del profesor del curso
 
 ```sh
-cd ~/projects
 git clone https://github.com/d4n13lbc/testproject.git
-cd ~/projects/testproject
 ```
 
-Run test from the terminal with pytest
-```sh
-py.test
-```
-
-Run coberture test from the terminal
-
-```sh
-py.test --cov-report term --cov=../testproject
-```
-
-There is a file in the sources called run_tests.sh. Check permissions for this file.
-
-```sh
-$ git ls-files --stage
-$ git ls-tree HEAD
-```
-
-It is important that this file has execution permissions due to when this file is clone by jenkins, it needs 
-to be execute in the CI server. If you find that run_tests.sh does not have execution permissions you can set the appropiated permissions using the following command
-
-```sh
-$ git update-index --chmod=+x run_tests.sh
-```
-## Links and References
-https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions#InstallingJenkinsonRedHatdistributions-ImportantNoteonCentOSJava <br/>
-https://www.youtube.com/watch?v=iGtM_OP01FU <br/>
-https://github.com/rgeoghegan/pystache <br/>
-https://pypi.python.org/pypi/pytest-cov <br/>
-http://stackoverflow.com/questions/23146253/test-redirection-in-flask-with-python-unittest
 
 [1]: images/jenkins_configuration_icesi.png
 [2]: images/jenkins_ok.png
